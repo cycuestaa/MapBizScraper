@@ -19,6 +19,7 @@ This Python project automates the collection of beauty business data (e.g., salo
   - Business status
   - Google Maps URL
   - Matching search terms
+  - Note: Email addresses are not returned by Google’s API (privacy restricted).
 - Removes duplicates using Place ID
 - Saves results into a clean Excel file
 
@@ -47,3 +48,27 @@ pip install requests pandas openpyxl
 ### 3. Add your Google API Key
 Open business_scraper.py and replace:
 API_KEY = 'YOUR_API_KEY'
+
+### 4. Usage
+Update the following lists in the script:
+
+```python
+ZIP_CODES = ['90210', '10001']
+SEARCH_TERMS = ["nail salon", "hair stylist", "medspa", "barber", "spa"]
+RADIUS = 1609  # 1 mile in meters
+```
+
+### 5. Output
+An Excel file named:
+```python
+df = pd.DataFrame(data)
+df.to_excel("beauty_businesses_filtered.xlsx", index=False)
+print("✅ Done! File saved as beauty_businesses_filtered.xlsx")
+```
+
+
+## To run the script:
+beauty_businesses_filtered.xlsx
+```bash
+python business_scraper.py
+```
