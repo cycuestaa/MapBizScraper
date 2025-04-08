@@ -72,3 +72,15 @@ beauty_businesses_filtered.xlsx
 ```bash
 python business_scraper.py
 ```
+
+
+
+## 🧠 Next Steps: Build an Email Scraper from Website URLs
+You can create a simple Python script that:
+
+- Opens each business website URL from your Excel file
+- Scans the HTML for email addresses using regex
+- Saves the matched email addresses in a new column
+
+### Install Dependecies
+pip install requests beautifulsoup4
