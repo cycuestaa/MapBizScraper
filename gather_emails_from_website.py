@@ -5,6 +5,23 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 EMAIL_REGEX = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
+CONTACT_KEYWORDS = ['contact', 'contacto', 'contactar', 'contáctanos', 'contactanos']
+MEDIA_KEYWORDS = ['media', 'prensa', 'press', 'medios']
+SOCIAL_PLATFORMS = {
+    'Instagram': 'instagram.com',
+    'Facebook': 'facebook.com',
+    'Pinterest': 'pinterest.com',
+    'TikTok': 'tiktok.com',
+    'Twitter': 'twitter.com',
+    'X': 'x.com'
+}
+
+def extract_emails_from_text(text, keywords=[]):
+    emails = re.findall(EMAIL_REGEX, text)
+    if keywords:
+        filtered_emails = [e for e in emails if any(k in text.lower() for k in keywords)]
+        return filtered_emails or emails
+    return emails
 
 def extract_email_from_url(url):
     try:
