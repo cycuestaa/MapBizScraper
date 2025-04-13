@@ -6,12 +6,14 @@ import sys
 
 API_KEY = 'AIzaSyAr7mTtobj2TIBgX507YavWpuaU86ZcWjw'
 #ZIP_CODES = ['00907', '00909', '00911', '00912', '00913', '00901', '00918', '00915']
-SEARCH_TERMS = ["nail salon", "hair salon", "tattoo", "barber", "pet grooming", "eyelashes"]
-RADIUS = 1609  # 1 mile in meters
+SEARCH_TERMS = ["nails", "nail salon", "makeup artist","hair salon", "beauty salon", "tattoo", "barber", "pet grooming", "eyelashes"]
+RADIUS = 2400  # 1 mile in meters (1609)
 unique_places = {}
 
 def get_coordinates(zip_code):
-    geo_url = f'https://maps.googleapis.com/maps/api/geocode/json?address={zip_code}&key={API_KEY}'
+    geo_url = f'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:{zip_code}|country:PR&key={API_KEY}'
+
+    #address={zip_code}&key={API_KEY}'
     res = requests.get(geo_url).json()
     results = res.get('results', [])
     if not results:
@@ -52,11 +54,12 @@ def main():
         df_zips = pd.read_csv(args.csv_file)
         zip_entries = df_zips[['zipCode', 'neighborhoodName']].dropna()
     except Exception as e:
-        print(f"❌ Error reading CSV file: {e}")
+        print(f"xx Error reading CSV file: {e}")
         sys.exit(1)
 
     for _, row in zip_entries.iterrows():
-        zip_code = str(row['zipCode'])
+        zip_code = str(row['zipCode']).zfill(5)
+        print(f" Using ZIP code: {zip_code}")
         lat, lng = get_coordinates(zip_code)
         for term in SEARCH_TERMS:
             print(f"Searching: {term} in {zip_code}")
@@ -89,8 +92,9 @@ def main():
         data.append(info)
 
     df_out = pd.DataFrame(data)
-    df_out.to_excel("beauty_businesses_filtered-PR1.xlsx", index=False)
-    print("✅ Done! File saved as beauty_businesses_filtered-PR1.xlsx")
+    df_out.to_excel("beauty_businesses_filtered-PR2.xlsx", index=False)
+    #df_out.to_csv("beauty_businesses_filtered-PR2.csv", index=False)
+    print("Done! File saved as beauty_businesses_filtered-PR2.xlsx")
 
 if __name__ == "__main__":
     main()
