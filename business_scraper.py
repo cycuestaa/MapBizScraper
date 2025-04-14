@@ -4,7 +4,7 @@ import time
 import argparse
 import sys
 
-API_KEY = 'AIzaSyAr7mTtobj2TIBgX507YavWpuaU86ZcWjw'
+API_KEY = 'ur api'
 #ZIP_CODES = ['00907', '00909', '00911', '00912', '00913', '00901', '00918', '00915']
 SEARCH_TERMS = ["nails", "nail salon", "makeup artist","hair salon", "beauty salon", "tattoo", "barber", "pet grooming", "eyelashes"]
 RADIUS = 2400  # 1 mile in meters (1609)
