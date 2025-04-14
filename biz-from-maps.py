@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import time
 
-API_KEY = 'AIzaSyAr7mTtobj2TIBgX507YavWpuaU86ZcWjw'
+API_KEY = 'ur api'
 ZIP_CODES = ['00907', '00909', '00911', '00912', '00913', '00901', '00918', '00915']
 SEARCH_TERMS = ["nail salon", "hair salon", "tattoo", "barber", "pet grooming", "eyelashes"]
 
